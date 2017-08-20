@@ -16,7 +16,6 @@ import com.models.Empleado;
 public class EmpleadoService {
 	SessionFactory sf = new Configuration().configure().buildSessionFactory();
 	
-	private double sueldoDouble; 
 	
 	@SuppressWarnings("unchecked")
 	public List <Empleado> getAllEmpleado (){
@@ -27,18 +26,18 @@ public class EmpleadoService {
 	
 	
 	public Empleado  createEmpleado(  String nombre , String sueldo){
-		//test jetty server 
-		Server server = new Server(4567); 
+		double sueldoDouble; 
 		
 		Configuration cfg = new Configuration(); 
 		cfg.configure("hibernate.cfg.xml");
 		SessionFactory factory = cfg.buildSessionFactory(); 
+		try{
 		Session session = factory.openSession(); 
 		Transaction t = (Transaction) session.beginTransaction(); 
 		
 		Empleado empleado = new Empleado();
 		empleado.setNombre(nombre);
-		//esto esta asi porque desde la vista recibe un String y la tanto la 
+		//esto esta asi porque desde la vista recibe un String y tanto la 
 		//base de datos como el la clase "Empleado" me piden un double 
 		empleado.setSueldo(sueldoDouble = Double.parseDouble(sueldo));
 		//Integer idLocal = empleado.getId(); 
@@ -49,10 +48,15 @@ public class EmpleadoService {
 		session.persist(empleado); 
 		t.commit();
 		System.out.println("los datos se guardaron correctamente :) ");
-		//session.close(); 
+		if (session.isOpen()){
+			session.close();  
+			return empleado; 
+		}
+		}catch(NumberFormatException  e ){
+			System.out.println("error al guardar sueldo");
+		}
 		
-		return empleado; 
-		
+		return null;
 	}
 }
 

@@ -29,15 +29,22 @@ $(function() {
   $('#guardar').click(function(){
     var nombre = $('#nombre').val();
     var sueldo = $('#sueldo').val();
-
+	var xhr = new window.XMLHttpRequest();
     $.ajax({
     type:"POST", 
     url: '/api/registrar?nombre='+nombre+'&sueldo='+sueldo,
+   
     success: function(data) {
     $('#result').text(data);
-          
+       if(isNaN(sueldo)){
+       alert('el sueldo debe ingresarse en numeros'); 
+       
+       }else{
+       	$("#result").text('los valores fueron ingresados correctamente'); 	
+       }   
       }
     });
+    xhr.abort(); 
   });
 });
     </script>

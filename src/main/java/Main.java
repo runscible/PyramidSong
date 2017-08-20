@@ -14,25 +14,28 @@ import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 public class Main {
 
-    public static void  main(String[] argv) throws Exception {
-    	Server server = new Server(8080); 
+    @SuppressWarnings("rawtypes")
+	public static void  main(String[] argv) throws Exception {
     	
     staticFiles.location("/resources");
 
-       get("/", (request, response) -> {
+       get("/", (req, res) -> {
+    	   init(); 
             Map <String , Object> model = new HashMap<>();
             return new ModelAndView(model, "templates/lista.vm");
+            	
             
-          }, new VelocityTemplateEngine());
+       }, new VelocityTemplateEngine());
         
-        get("/api/registrar", (request, response) -> {
-            return new ModelAndView(new HashMap(), "templates/registro.vm");
+        get("/api/registrar", (req, res) -> {
+           init(); 
+           res.status(200); 
+        	return new ModelAndView(new HashMap(), "templates/registro.vm");
         }, new VelocityTemplateEngine());
        
 
         new EmpleadoController(new EmpleadoService()); 
-        server.stop();
-        server.start();
+        init(); 
         
     }	
 }
