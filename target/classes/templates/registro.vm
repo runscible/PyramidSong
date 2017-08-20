@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>pagina de registro</title>
+</head>
+<body>
+        <div align="left"> #parse('templates/header.vm')</div>
+<h3><pre>pagina de registro </pre></h3> 
+ <form  method="post" id="envio">
+        <table >
+            <tr>
+                <td>User Name :</td>
+                <td><input type="text" name="nombre" id="nombre"/></td>
+            </tr>
+            <tr>
+                <td>sueldo :</td>
+                <td><input type="text" name="sueldo" id="sueldo"/></td>
+            </tr>
+            
+        </table>
+        <p />
+         <input type="button" id="guardar" value="guardar"/>
+    </form>
+    <button  id="test">test button</button>
+   <div id ="result"></div>
+    <script>
+$(function() {
+  $('#guardar').click(function(){
+    var nombre = $('#nombre').val();
+    var sueldo = $('#sueldo').val();
+
+    $.ajax({
+    type:"POST", 
+    url: '/api/registrar?nombre='+nombre+'&sueldo='+sueldo,
+    success: function(data) {
+    $('#result').text(data);
+          
+      }
+    });
+  });
+});
+    </script>
+</body>
+</html>

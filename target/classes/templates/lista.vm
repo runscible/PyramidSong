@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>lista</title>
+
+</head>
+<body>
+<div align="left">#parse("templates/header.vm") </div>
+	<h3>
+		<pre>pagina de lista :) </pre>
+	</h3>
+	<table id="lista">
+	</table>
+<script>
+ 	$(document).ready(function(){
+ 		console.log('Hola :) '); 
+ 		$.getJSON("http://localhost:4567/empleados", function(data){
+ 		console.log(data);
+ 		var toAppend = "<table><tr><th>sueldo empleado</th><th>nombre empleado</th><th>fecha creacion</th></tr>\n"; 
+        $.each(data,function(i,o){
+        			
+           toAppend += '<tr><th>'+o.nombre+'</th>';
+           toAppend += '<th>' + o.sueldo + '</th>'; 
+           toAppend += '<th>' + o.Fecha_creacion + '</th></tr>'; 	
+        });
+	  $('#lista').append(toAppend);
+ 	});
+ 	
+ }); 
+ </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<table >
+    <tr >
+        <td ><a href="/">listado</a></td>
+        <td ><a href="/api/registrar">registro</a></td>
+    </tr>
+</table>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<style>
+table{
+	 border-collapse: collapse;
+	 width: 75%;
+}
+td, th {
+	border: 3px solid #dddddd;
+	  text-align: left;
+	   padding: 8px;
+	   font-family: Arial, sans-serif; 
+}
+#registro{
+	text-align: center; 
+	align-content: center; 
+}
+
+</style>	
