@@ -23,10 +23,18 @@ public class Main {
     	   init(); 
             Map <String , Object> model = new HashMap<>();
             return new ModelAndView(model, "templates/lista.vm");
+            
+       }, new VelocityTemplateEngine());
+        //test 
+       get("/lista", (req, res) -> {
+    	   init(); 
+            Map <String , Object> model = new HashMap<>();
+            return new ModelAndView(model, "templates/lista.vm");
             	
             
        }, new VelocityTemplateEngine());
-        
+
+       
         get("/api/registrar", (req, res) -> {
            init(); 
            res.status(200); 

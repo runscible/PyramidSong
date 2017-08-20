@@ -1,6 +1,6 @@
 package com.models;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import com.google.gson.Gson;
+
 
 @Entity
 @Table(name="empleado", schema="public")

@@ -21,7 +21,7 @@ public class EmpleadoService {
 	public List <Empleado> getAllEmpleado (){
 			EntityManager session = sf.createEntityManager();
 		    List<Empleado> empleados = session.createQuery("FROM Empleado").getResultList();
-			return empleados; 
+		    return empleados; 
 		}
 	
 	
@@ -40,20 +40,20 @@ public class EmpleadoService {
 		//esto esta asi porque desde la vista recibe un String y tanto la 
 		//base de datos como el la clase "Empleado" me piden un double 
 		empleado.setSueldo(sueldoDouble = Double.parseDouble(sueldo));
-		//Integer idLocal = empleado.getId(); 
-		//empleados.put(idLocal.toString(), empleado.getNombre()); 
 		System.out.println(empleado.getNombre());
 		System.out.println(empleado.getSueldo());
 		
-		session.persist(empleado); 
+		session.save(empleado); 
 		t.commit();
 		System.out.println("los datos se guardaron correctamente :) ");
+		
 		if (session.isOpen()){
 			session.close();  
 			return empleado; 
 		}
 		}catch(NumberFormatException  e ){
-			System.out.println("error al guardar sueldo");
+			System.out.println("error al guardar sueldo, valores no válidos");
+			e.printStackTrace();
 		}
 		
 		return null;

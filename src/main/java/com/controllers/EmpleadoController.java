@@ -10,6 +10,7 @@ public class EmpleadoController {
 	//get method para hacer las llamadas por json a la vista 
 	
 	public EmpleadoController(final EmpleadoService empleadoService){
+		init(); 
 		String empleadosJson = new Gson().toJson(empleadoService.getAllEmpleado()); 
 		get("/empleados", (req, res)-> empleadosJson);
 	
