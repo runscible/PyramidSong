@@ -10,7 +10,7 @@
  <form  method="post" id="envio">
         <table >
             <tr>
-                <td>User Name :</td>
+                <td>Nombre del empleado :</td>
                 <td><input type="text" name="nombre" id="nombre"/></td>
             </tr>
             <tr>
@@ -41,6 +41,9 @@ $(function() {
        
        }else{
        	$("#result").text('los valores fueron ingresados correctamente'); 	
+       }if (nombre === typeOf StringValue ){
+       }else{
+       	alert('debe ingresar un nombre válido'); 
        }   
       }
     });
